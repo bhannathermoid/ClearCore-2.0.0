@@ -34,7 +34,8 @@ clearcore.build.usb_manufacturer="Teknic, Inc."
 clearcore.build.board=ARM_ClearCore
 clearcore.build.core=arduino
 clearcore.build.variant=clearcore
-clearcore.build.extra_flags={build.usb_flags} -lc -DDEBUG 
+clearcore.build.extra_flags={build.usb_flags} -lc -DDEBUG
 clearcore.build.ldscript=linker_scripts/gcc/flash_with_bootloader.ld
+clearcore.build.openocdscript=openocd_scripts/clearcore.cfg
 
 ##############################################################
