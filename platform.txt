@@ -17,17 +17,22 @@ compiler.warning_flags.default=
 compiler.warning_flags.more=-Wall
 compiler.warning_flags.all=-Wall -Wextra
 
+# EXPERIMENTAL feature: optimization flags
+#  - this is alpha and may be subject to change without notice
+compiler.optimization_flags=-O3
+compiler.optimization_flags.release=-O3
+compiler.optimization_flags.debug=-Og -g3
+
 # Default "compiler.path" is correct, change only if you want to override the initial value
 compiler.path={runtime.tools.arm-none-eabi-gcc.path}/bin/
-compiler.opt_flags=-O3
 compiler.c.cmd=arm-none-eabi-gcc
-compiler.c.flags=-c -g {compiler.opt_flags} {compiler.warning_flags} -ffunction-sections -fdata-sections -std=gnu11 -mthumb -mcpu={build.mcu} -mfloat-abi={build.float} -mfpu={build.fpu} --param max-inline-insns-single=50 -MMD --specs=nosys.specs
+compiler.c.flags=-c -g {compiler.optimization_flags} {compiler.warning_flags} -ffunction-sections -fdata-sections -std=gnu11 -mthumb -mcpu={build.mcu} -mfloat-abi={build.float} -mfpu={build.fpu} --param max-inline-insns-single=50 -MMD --specs=nosys.specs
 compiler.c.elf.cmd=arm-none-eabi-g++
 compiler.c.elf.flags={compiler.optimization_flags} -Wl,--gc-sections
 compiler.S.cmd=arm-none-eabi-gcc
 compiler.S.flags=-c -g -x assembler-with-cpp -MMD
 compiler.cpp.cmd=arm-none-eabi-g++
-compiler.cpp.flags=-mthumb -mcpu={build.mcu} -mfloat-abi={build.float} -mfpu={build.fpu} -c -g {compiler.opt_flags} {compiler.warning_flags} -std=gnu++11 -ffunction-sections -fdata-sections -fno-threadsafe-statics -nostdlib --param max-inline-insns-single=500 -fno-rtti -fno-exceptions -MMD
+compiler.cpp.flags=-mthumb -mcpu={build.mcu} -mfloat-abi={build.float} -mfpu={build.fpu} -c -g {compiler.optimization_flags} {compiler.warning_flags} -std=gnu++11 -ffunction-sections -fdata-sections -fno-threadsafe-statics -nostdlib --param max-inline-insns-single=500 -fno-rtti -fno-exceptions -MMD
 compiler.ar.cmd=arm-none-eabi-ar
 compiler.ar.flags=rcs
 compiler.objcopy.cmd=arm-none-eabi-objcopy
@@ -43,7 +48,7 @@ compiler.readelf.cmd=arm-none-eabi-readelf
 # This can be overridden in boards.txt
 build.extra_flags=
 
-compiler.libsam.c.flags=-DUSBCON -DUSB_CONFIG_POWER=0 -D__CLEARCORE__ -D__SAME53N19A__ -DARM_MATH_CM4 "-I{build.core.path}/api" {compiler.arm.cmsis.c.flags} "-I{runtime.platform.path}/Teknic/libClearCore/inc" "-I{runtime.platform.path}/Teknic/LwIP/LwIP/src/include" "-I{runtime.platform.path}/Teknic/LwIP/LwIP/port/include" 
+compiler.libsam.c.flags=-DUSBCON -DUSB_CONFIG_POWER=0 -D__CLEARCORE__ -D__SAME53N19A__ -DARM_MATH_CM4 "-I{build.core.path}/api" {compiler.arm.cmsis.c.flags} "-I{runtime.platform.path}/Teknic/libClearCore/inc" "-I{runtime.platform.path}/Teknic/LwIP/LwIP/src/include" "-I{runtime.platform.path}/Teknic/LwIP/LwIP/port/include"
 
 # These can be overridden in platform.local.txt
 compiler.c.extra_flags=
