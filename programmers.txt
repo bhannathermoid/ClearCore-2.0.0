@@ -1,0 +1,7 @@
+atmel_ice.name=Atmel-ICE
+atmel_ice.communication=USB
+atmel_ice.protocol=cmsis-dap.cfg
+atmel_ice.program.tool=openocd
+atmel_ice.program.tool.default=openocd
+atmel_ice.program.extra_params=
+atmel_ice.extra_params=
